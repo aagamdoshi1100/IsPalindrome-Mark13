@@ -98,8 +98,8 @@ function checkAllFormatsArePalindrome(date){
 
 
 var date ={
-    day :12,
-    month : 2,
+    day :10,
+    month : 11,
     year :1111
 };
 
@@ -137,9 +137,40 @@ function CheckDateCriteria(date,MaxDaysOfMonthV){
        
     }else{
         var DaysAreLessInMonth=date.day +1;
-        console.log("Generated Day",DaysAreLessInMonth);
-        console.log("Generated Month",date.month);
-        console.log("Generated year",date.year);
+        var Gday=DaysAreLessInMonth;
+        var Gmonth=date.month;
+        var Gyear=date.year;
+        console.log("Gener day",Gday);
+        console.log("Gener month",Gmonth);
+        console.log("Gener year",Gyear);
+        if(Gday<10){
+            Gday = "0"+Gday;
+        }else{
+            Gday = Gday.toString();
+        }
+        if(Gmonth<10){
+            Gmonth = "0"+Gmonth;
+        }else{
+            Gmonth = Gmonth.toString();
+        }
+        if(Gyear<10){
+            Gyear = "000"+Gyear;
+        }else{
+            Gyear = Gyear.toString();
+        }
+
+    }
+    Gstring = Gday+Gmonth+Gyear;
+    console.log("Generated string",Gstring);
+
+    revGstring = Gstring.split('').reverse().join('');
+
+    console.log("Generated reverse string",revGstring);
+
+    if(Gstring===revGstring){
+        console.log("Palindrome");
+    }else{
+    console.log("Non Palindrome");
     }
 
 
@@ -159,8 +190,3 @@ function MaxDaysOfMonth(date){
     }
     
    
-
-
-function NextNewDate(date){
-
-}

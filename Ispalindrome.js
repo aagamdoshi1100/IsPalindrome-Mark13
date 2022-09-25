@@ -1,8 +1,30 @@
-// var UserInput = document.querySelector("#bdate");
+ var UserInput = document.querySelector("#bdate");
 
-// var Answer = document.querySelector("#checkpalin");
+ var Answer = document.querySelector("#checkpalin");
+ var output = document.querySelector("#output");
+ var output1 = document.querySelector("#output1");
+ Answer.addEventListener("click",clickhandler);
 
-// Answer.addEventListener("click",AllDateFormats);
+
+ function clickhandler(e){
+    var User =  UserInput.value;
+
+    if(User !==''){
+        var Usergiven = User.split('-');
+
+        var date={
+            day:Usergiven[2],
+            month:Usergiven[1],
+            year:Usergiven[0]
+        }
+        console.log(date);
+        console.log(checkAllFormatsArePalindrome(date));
+
+    }
+
+ }
+
+
 
 function reverseStr(str){
     console.log(str)
@@ -37,20 +59,20 @@ function NumToStr(date){
     var Stringstr = { day : "", month:"", year:""};
 
     if(date.day < 10){
-        Stringstr.day ="0"+date.day;
+        Stringstr.day =""+date.day;
  
     }
     else{
         Stringstr.day = date.day.toString();
     }
     if(date.month < 10){
-        Stringstr.month ="0"+date.month;
+        Stringstr.month =""+date.month;
     }
     else{
         Stringstr.month = date.month.toString();
     }
     if(date.year < 10){
-        Stringstr.year ="000"+date.year;
+        Stringstr.year =""+date.year;
     }
     else{
         Stringstr.year = date.year.toString();
@@ -86,9 +108,11 @@ function checkAllFormatsArePalindrome(date){
         var flag = IsPalindrome(checkAllFormatsArePalindromevariable[i])
         if(0 === flag){  
             console.log("Palindrome");
+            output.innerText = "Congrats! Your birth date is palindrome";
             break;
         }else{
             console.log("Not Palindrome");
+            output.innerText = "Your birth date is not a palindrome";
             console.log(CheckMonthCriteria(date));
 
         }
@@ -100,13 +124,7 @@ function checkAllFormatsArePalindrome(date){
 // ------------------------------------------------------------------------
 
 
-var date ={
-    day :10,
-    month : 11,
-    year :1111
-};
 
-console.log(checkAllFormatsArePalindrome(date));
 
 
 function CheckMonthCriteria(date){
@@ -133,11 +151,16 @@ function CheckDateCriteria(date,MaxDaysOfMonthV){
         date.month  = date.month + 1;
         if(date.month > 12){
             CheckMonthCriteria(date);
-        }
+        }else{
+
         console.log("if more than days of month",date.month);
         date.day =1;
         console.log("Generated Day ",date.day);
-       
+
+        }
+
+
+
     }else{
         var iteration =date.day;
 
@@ -190,22 +213,28 @@ function NewAllDateFormats(newdate){
 }
 
 
+
 function NewNextGeneration(newdate){
         //  console.log("checAll",newdate);
         var checkAllFormatsArePalindromevariable = NewAllDateFormats(newdate);
         console.log("String",checkAllFormatsArePalindromevariable);
    
-
+        var oo = checkAllFormatsArePalindromevariable;
 
         var checkfinal = checkAllFormatsArePalindromevariable.split('').reverse().join('');
         console.log("reversesring",checkfinal);     
 
         if(checkfinal===checkAllFormatsArePalindromevariable){
-            console.log("Palindrome date ");
-
+            console.log("Palindrome");
+            
+            output1.innerHTML = oo;
        
         }else{
             console.log("Non Palindrome date ");
+            output1.innerHTML = "Sorry we couldn't find next palindrome date";
+            
+
+
         }
 }
 

@@ -1,0 +1,36 @@
+
+
+input{
+    padding: 13px;
+    margin-top: 15px;
+    font-size: 15px;
+
+}
+button,input:hover{
+    border-color: rgb(61, 118, 223);
+}
+
+button{
+    padding: 13px;
+    margin-top: 15px;
+    font-size: 15px;
+    background-color: rgb(190, 210, 223);
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+    margin-top: 5rem;
+}
+
+    label{
+        margin-top: 15px;
+        font-size: 18px;
+    }
+    
+    p{
+        margin-top: 15px;
+        font-size: 30px;
+    }

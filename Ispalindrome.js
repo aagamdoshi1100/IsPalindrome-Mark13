@@ -55,7 +55,7 @@ function NumToStr(date){
     else{
         Stringstr.year = date.year.toString();
     }
-
+    console.log("checkstr",Stringstr);
     return Stringstr;
 
 }
@@ -64,7 +64,7 @@ function NumToStr(date){
 
 function AllDateFormats(date){
 
-    var srtt = NumToStr(date);
+     var srtt = NumToStr(date);
 
     var ddmmyyyy =  srtt.day + srtt.month + srtt.year;
     var mmddyyyy =  srtt.month + srtt.day + srtt.year;
@@ -73,12 +73,14 @@ function AllDateFormats(date){
     var yymmdd =  srtt.year.slice(-2) + srtt.month + srtt.day;
     var mmddyy =  srtt.month + srtt.day + srtt.year.slice(-2);
     return [ddmmyyyy,mmddyyyy,yyyyddmm,ddmmyy,yymmdd,mmddyy];
+    // console.log("checkfor",ddmmyyyy);
+    // return ddmmyyyy;
 }
 
 
 function checkAllFormatsArePalindrome(date){
-    
-        var checkAllFormatsArePalindromevariable = AllDateFormats(date);
+        
+         var checkAllFormatsArePalindromevariable = AllDateFormats(date);
         
     for (i=0;i<checkAllFormatsArePalindromevariable.length;i++){
         var flag = IsPalindrome(checkAllFormatsArePalindromevariable[i])
@@ -87,6 +89,7 @@ function checkAllFormatsArePalindrome(date){
             break;
         }else{
             console.log("Not Palindrome");
+            console.log(CheckMonthCriteria(date));
 
         }
 
@@ -99,11 +102,11 @@ function checkAllFormatsArePalindrome(date){
 
 var date ={
     day :10,
-    month : 2,
+    month : 11,
     year :1111
 };
 
-console.log(CheckMonthCriteria(date));
+console.log(checkAllFormatsArePalindrome(date));
 
 
 function CheckMonthCriteria(date){
@@ -151,43 +154,61 @@ function CheckDateCriteria(date,MaxDaysOfMonthV){
         console.log("Gener day",Gday);
         console.log("Gener month",Gmonth);
         console.log("Gener year",Gyear);
-        if(Gday<10){
-            Gday = "0"+Gday;
-        }else{
-            Gday = Gday.toString();
-        }
-        if(Gmonth<10){
-            Gmonth = "0"+Gmonth;
-        }else{
-            Gmonth = Gmonth.toString();
-        }
-        if(Gyear<10){
-            Gyear = "000"+Gyear;
-        }else{
-            Gyear = Gyear.toString();
-        }
 
-    
-    Gstring = Gday+Gmonth+Gyear;
-    console.log("Generated string",Gstring);
 
-    revGstring = Gstring.split('').reverse().join('');
+            var newdate = {
+                day : Gday,
+                month : Gmonth,
+                year : Gyear
+            }
 
-    console.log("Generated reverse string",revGstring);
 
-    if(Gstring===revGstring){
-        console.log("Palindrome");
-        break;
-    }else{
-    console.log("Non Palindrome");
 
-        
-    }
+             var Gconvertostring = NewNextGeneration(newdate);
+
+
         }
     }
 
 
 }
+
+
+function NewAllDateFormats(newdate){
+
+    var srtt = NumToStr(newdate);
+
+   var ddmmyyyy =  srtt.day + srtt.month + srtt.year;
+//    var mmddyyyy =  srtt.month + srtt.day + srtt.year;
+//    var yyyyddmm =  srtt.year + srtt.day + srtt.month;
+//    var ddmmyy =  srtt.day + srtt.month + srtt.year.slice(-2);
+//    var yymmdd =  srtt.year.slice(-2) + srtt.month + srtt.day;
+//    var mmddyy =  srtt.month + srtt.day + srtt.year.slice(-2);
+//    return [ddmmyyyy,mmddyyyy,yyyyddmm,ddmmyy,yymmdd,mmddyy];
+//    console.log("checkfor",ddmmyyyy);
+   return ddmmyyyy;
+}
+
+
+function NewNextGeneration(newdate){
+        //  console.log("checAll",newdate);
+        var checkAllFormatsArePalindromevariable = NewAllDateFormats(newdate);
+        console.log("String",checkAllFormatsArePalindromevariable);
+   
+
+
+        var checkfinal = checkAllFormatsArePalindromevariable.split('').reverse().join('');
+        console.log("reversesring",checkfinal);     
+
+        if(checkfinal===checkAllFormatsArePalindromevariable){
+            console.log("Palindrome date ");
+
+       
+        }else{
+            console.log("Non Palindrome date ");
+        }
+}
+
 
 
 function MaxDaysOfMonth(date){

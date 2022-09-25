@@ -94,12 +94,12 @@ function checkAllFormatsArePalindrome(date){
 }
 
 
-
+// ------------------------------------------------------------------------
 
 
 var date ={
     day :10,
-    month : 11,
+    month : 2,
     year :1111
 };
 
@@ -136,10 +136,18 @@ function CheckDateCriteria(date,MaxDaysOfMonthV){
         console.log("Generated Day ",date.day);
        
     }else{
-        var DaysAreLessInMonth=date.day +1;
+        var iteration =date.day;
+
+        for(i = iteration;i<MaxDaysOfMonthV;i++){
+
+
+        var DaysAreLessInMonth= i +1;
         var Gday=DaysAreLessInMonth;
         var Gmonth=date.month;
         var Gyear=date.year;
+
+
+
         console.log("Gener day",Gday);
         console.log("Gener month",Gmonth);
         console.log("Gener year",Gyear);
@@ -159,7 +167,7 @@ function CheckDateCriteria(date,MaxDaysOfMonthV){
             Gyear = Gyear.toString();
         }
 
-    }
+    
     Gstring = Gday+Gmonth+Gyear;
     console.log("Generated string",Gstring);
 
@@ -169,8 +177,13 @@ function CheckDateCriteria(date,MaxDaysOfMonthV){
 
     if(Gstring===revGstring){
         console.log("Palindrome");
+        break;
     }else{
     console.log("Non Palindrome");
+
+        
+    }
+        }
     }
 
 

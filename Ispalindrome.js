@@ -31,8 +31,8 @@ function NumToStr(date){
     else{
         Stringstr.month = date.month.toString();
     }
-    if(date.year < 100){
-        Stringstr.year =""+date.year;
+    if(date.year < 10){
+        Stringstr.year ="0"+date.year;
     }
     else{
         Stringstr.year = date.year.toString();
@@ -85,10 +85,14 @@ function checkAllFormatsArePalindrome(date){
 //--------------------------------------------------------------------------------------------------------
 
 function GetNextDate(date){
-    var day = date.day + 1;
-    var month = date.month;
-    var year = date.year;
+    var day = Number(date.day) + 1;   
+    var month = Number(date.month);
+    var year = Number(date.year);
 
+     //var day =Number(day);
+    // var month =Number(month);
+    console.log("dddd",typeof(day));
+    console.log("dddd",day);
 
     var DaysInMonth = [31 ,28,31,30,31,30,31,31,30,31,30,31];
 
@@ -182,18 +186,18 @@ var UserInput = document.querySelector("#bdate");
  function clickhandler(e){
 
     var In = UserInput.value;
-
+    console.log(In,"in kya hai")
     if(In !== ''){
 
         var removehypen = In.split('-');
-
+        console.log(removehypen,"removehypen kya hai")
         var date ={
             day : removehypen[2],
             month:removehypen[1],
             year:removehypen[0]
         }
         console.log("Inserted Date" , date);
-
+        console.log(date.day,"bhai issue kya hai")
 
         var palindromecheckkarnewala = checkAllFormatsArePalindrome(date);
 
@@ -202,20 +206,25 @@ var UserInput = document.querySelector("#bdate");
 
   if(palindromecheckkarnewala){
 
+    output.style.color = 'green';
     output.innerText = "Your birth date is  a palindrome";
+    output1.style.display = 'none';
+    output2.style.display = 'none';
 
   }else{
 
     output.innerText = "Your birth date is not a palindrome";
-    console.log(GetNextPalindromeDate(date));
     var [counter,NextDate] = GetNextPalindromeDate(date);
+    console.log([counter,NextDate]);
 
+    output1.style.display = 'block';
+    output2.style.display = 'block';
+    output1.style.color = 'blue';
+    output2.style.color = 'blue';
     output1.innerText = `The next plaindorme date is ${NextDate.day}-${NextDate.month}-${NextDate.year}`;
     output2.innerText = `You have missed by ${counter} days`;
 
   }
-
- 
 
     }
 

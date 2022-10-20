@@ -32,12 +32,12 @@ function NumToStr(date){
         Stringstr.month = date.month.toString();
     }
     if(date.year < 100){
-        Stringstr.year ="00"+date.year;
+        Stringstr.year =""+date.year;
     }
     else{
         Stringstr.year = date.year.toString();
     }
-    // console.log("checkstr",Stringstr);
+     console.log("checkstr",Stringstr);
     return Stringstr;
 
 }
@@ -76,22 +76,13 @@ function checkAllFormatsArePalindrome(date){
 }
 
 
-var date = {
-    day :1,
-    month :11,
-    year :1111
-}
+// var date = {
+//     day :1,
+//     month :11,
+//     year :1111
+// }
 
- console.log(checkAllFormatsArePalindrome(date));
-
- var check = checkAllFormatsArePalindrome(date);
-
- if(!check){
-    console.log(GetNextPalindromeDate(date));
-
- }
-
-// --------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------
 
 function GetNextDate(date){
     var day = date.day + 1;
@@ -176,3 +167,56 @@ function GetNextPalindromeDate(date){
 }
 
 // console.log(GetNextPalindromeDate(date));
+
+
+var UserInput = document.querySelector("#bdate");
+
+ var Answer = document.querySelector("#checkpalin");
+ var output = document.querySelector("#output");
+ var output1 = document.querySelector("#output1");
+ var output2 = document.querySelector("#output2");
+
+ Answer.addEventListener("click",clickhandler);
+
+  
+ function clickhandler(e){
+
+    var In = UserInput.value;
+
+    if(In !== ''){
+
+        var removehypen = In.split('-');
+
+        var date ={
+            day : removehypen[2],
+            month:removehypen[1],
+            year:removehypen[0]
+        }
+        console.log("Inserted Date" , date);
+
+
+        var palindromecheckkarnewala = checkAllFormatsArePalindrome(date);
+
+
+
+
+  if(palindromecheckkarnewala){
+
+    output.innerText = "Your birth date is  a palindrome";
+
+  }else{
+
+    output.innerText = "Your birth date is not a palindrome";
+    console.log(GetNextPalindromeDate(date));
+    var [counter,NextDate] = GetNextPalindromeDate(date);
+
+    output1.innerText = `The next plaindorme date is ${NextDate.day}-${NextDate.month}-${NextDate.year}`;
+    output2.innerText = `You have missed by ${counter} days`;
+
+  }
+
+ 
+
+    }
+
+ }
